@@ -40,7 +40,7 @@ const PasswordPrompt = () => {
 
         <div className="text-center">
           <button 
-            onClick={() => navigate("/forgot-password")}
+            onClick={() => navigate("/reset-code-verification", { state: { email } })}
             className="text-foreground hover:text-primary transition-colors font-medium"
           >
             Esqueceu sua senha?
