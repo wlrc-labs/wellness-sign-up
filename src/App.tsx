@@ -18,6 +18,12 @@ import Home from "./pages/Home";
 import EditProfile from "./pages/EditProfile";
 import NotFound from "./pages/NotFound";
 import MainLayout from "./components/MainLayout";
+import WorkoutCycles from "./pages/WorkoutCycles";
+import NewCycle from "./pages/NewCycle";
+import CycleDetails from "./pages/CycleDetails";
+import NewWorkout from "./pages/NewWorkout";
+import WorkoutExercises from "./pages/WorkoutExercises";
+import WorkoutView from "./pages/WorkoutView";
 
 const queryClient = new QueryClient();
 
@@ -41,7 +47,12 @@ const App = () => (
           <Route path="/complete-profile" element={<CompleteProfile />} />
           <Route path="/home" element={<MainLayout><Home /></MainLayout>} />
           <Route path="/edit-profile" element={<MainLayout><EditProfile /></MainLayout>} />
-          <Route path="/my-workouts" element={<MainLayout><div className="p-6 text-center text-muted-foreground">Página em desenvolvimento</div></MainLayout>} />
+          <Route path="/my-workouts" element={<MainLayout><WorkoutCycles /></MainLayout>} />
+          <Route path="/cycle/new" element={<MainLayout><NewCycle /></MainLayout>} />
+          <Route path="/cycle/:id" element={<MainLayout><CycleDetails /></MainLayout>} />
+          <Route path="/cycle/:id/new-workout" element={<MainLayout><NewWorkout /></MainLayout>} />
+          <Route path="/cycle/:id/workout/exercises" element={<MainLayout><WorkoutExercises /></MainLayout>} />
+          <Route path="/workout/:id" element={<MainLayout><WorkoutView /></MainLayout>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
