@@ -19,7 +19,7 @@ const CreatePassword = () => {
 
   const handleContinue = () => {
     if (allRequirementsMet) {
-      navigate("/");
+      navigate("/complete-profile");
     }
   };
 

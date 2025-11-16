@@ -13,6 +13,7 @@ import IdentityConfirmation from "./pages/IdentityConfirmation";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetCodeVerification from "./pages/ResetCodeVerification";
 import ResetPassword from "./pages/ResetPassword";
+import CompleteProfile from "./pages/CompleteProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-code-verification" element={<ResetCodeVerification />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/complete-profile" element={<CompleteProfile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
