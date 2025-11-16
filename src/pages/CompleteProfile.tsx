@@ -135,33 +135,35 @@ const CompleteProfile = () => {
           </p>
         </div>
 
-        {/* Documento de identificação */}
-        <div className="space-y-2">
-          <Label htmlFor="documentNumber" className="text-foreground">
-            Documento de identificação*
-          </Label>
-          <div className="flex gap-2">
-            <Select value={formData.documentType} onValueChange={(value) => setFormData({ ...formData, documentType: value })}>
-              <SelectTrigger className="w-32 h-12 bg-input border-border">
-                <FileText className="h-4 w-4 mr-2" />
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="CPF">CPF</SelectItem>
-                <SelectItem value="RG">RG</SelectItem>
-                <SelectItem value="CNH">CNH</SelectItem>
-              </SelectContent>
-            </Select>
-            <Input
-              id="documentNumber"
-              type="text"
-              value={formData.documentNumber}
-              onChange={(e) => setFormData({ ...formData, documentNumber: e.target.value })}
-              className="flex-1 h-12 bg-input border-border"
-              required
-            />
+        {/* Documento de identificação - Only for Profissional */}
+        {userType === "profissional" && (
+          <div className="space-y-2">
+            <Label htmlFor="documentNumber" className="text-foreground">
+              Documento de identificação*
+            </Label>
+            <div className="flex gap-2">
+              <Select value={formData.documentType} onValueChange={(value) => setFormData({ ...formData, documentType: value })}>
+                <SelectTrigger className="w-32 h-12 bg-input border-border">
+                  <FileText className="h-4 w-4 mr-2" />
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="CPF">CPF</SelectItem>
+                  <SelectItem value="CNPJ">CNPJ</SelectItem>
+                  <SelectItem value="Passaporte">Passaporte</SelectItem>
+                </SelectContent>
+              </Select>
+              <Input
+                id="documentNumber"
+                type="text"
+                value={formData.documentNumber}
+                onChange={(e) => setFormData({ ...formData, documentNumber: e.target.value })}
+                className="flex-1 h-12 bg-input border-border"
+                required
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Credencial - Only for Profissional */}
         {userType === "profissional" && (
@@ -177,8 +179,28 @@ const CompleteProfile = () => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="CREF">CREF</SelectItem>
-                  <SelectItem value="CRM">CRM</SelectItem>
-                  <SelectItem value="CRN">CRN</SelectItem>
+                  <SelectItem value="ISAK">ISAK</SelectItem>
+                  <SelectItem value="NSCA">NSCA</SelectItem>
+                  <SelectItem value="ACE">ACE</SelectItem>
+                  <SelectItem value="NASM">NASM</SelectItem>
+                  <SelectItem value="AUSActive">AUSActive</SelectItem>
+                  <SelectItem value="EREPS">EREPS</SelectItem>
+                  <SelectItem value="CSAln">CSAln</SelectItem>
+                  <SelectItem value="REPs UAE">REPs UAE</SelectItem>
+                  <SelectItem value="REPS Ireland">REPS Ireland</SelectItem>
+                  <SelectItem value="CSEP">CSEP</SelectItem>
+                  <SelectItem value="ISSA">ISSA</SelectItem>
+                  <SelectItem value="Kl 1">Kl 1</SelectItem>
+                  <SelectItem value="FIF">FIF</SelectItem>
+                  <SelectItem value="AMED">AMED</SelectItem>
+                  <SelectItem value="IranREPs">IranREPs</SelectItem>
+                  <SelectItem value="REPs NZ">REPs NZ</SelectItem>
+                  <SelectItem value="REPSSA">REPSSA</SelectItem>
+                  <SelectItem value="CIMSPA">CIMSPA</SelectItem>
+                  <SelectItem value="ACSM">ACSM</SelectItem>
+                  <SelectItem value="NCSF">NCSF</SelectItem>
+                  <SelectItem value="IPDJ">IPDJ</SelectItem>
+                  <SelectItem value="Outro">Outro</SelectItem>
                 </SelectContent>
               </Select>
               <Input
