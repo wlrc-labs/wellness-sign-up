@@ -90,7 +90,7 @@ const Home = () => {
               Bem-vindo de volta!
             </h1>
             <p className="text-muted-foreground">
-              Gerencie seus treinos e informações de perfil
+              Gerencie seus ciclos de treinos e informações de perfil
             </p>
           </div>
 
@@ -132,9 +132,9 @@ const Home = () => {
                   <Dumbbell className="h-8 w-8 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <CardTitle>Meus Treinos</CardTitle>
+                  <CardTitle>Meus Ciclos de Treinos</CardTitle>
                   <CardDescription>
-                    Acesse e gerencie seus treinos personalizados
+                    Acesse e gerencie seus ciclos de treinos personalizados
                   </CardDescription>
                 </div>
               </div>
