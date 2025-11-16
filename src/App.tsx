@@ -10,6 +10,7 @@ import CreatePassword from "./pages/CreatePassword";
 import Login from "./pages/Login";
 import PasswordPrompt from "./pages/PasswordPrompt";
 import IdentityConfirmation from "./pages/IdentityConfirmation";
+import ForgotPassword from "./pages/ForgotPassword";
 import ResetCodeVerification from "./pages/ResetCodeVerification";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/password-prompt" element={<PasswordPrompt />} />
           <Route path="/identity-confirmation" element={<IdentityConfirmation />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-code-verification" element={<ResetCodeVerification />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
