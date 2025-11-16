@@ -141,7 +141,7 @@ const EditProfile = () => {
           {/* Nome */}
           <div className="space-y-2">
             <Label htmlFor="name" className="text-foreground">
-              Nome*
+              Nome
             </Label>
             <Input
               id="name"
@@ -155,7 +155,7 @@ const EditProfile = () => {
 
           {/* Telefone */}
           <div className="space-y-2">
-            <Label className="text-foreground">Telefone*</Label>
+            <Label className="text-foreground">Telefone</Label>
             <div className="flex gap-2">
               <Select value={formData.phoneCountryCode} onValueChange={(value) => handleChange("phoneCountryCode", value)}>
                 <SelectTrigger className="w-28 h-12 bg-input border-border">
@@ -186,7 +186,7 @@ const EditProfile = () => {
           {/* Bio */}
           <div className="space-y-2">
             <Label htmlFor="bio" className="text-foreground">
-              Bio
+              Bio (opcional)
             </Label>
             <Textarea
               id="bio"
@@ -199,7 +199,7 @@ const EditProfile = () => {
 
           {/* Gênero */}
           <div className="space-y-2">
-            <Label className="text-foreground">Gênero</Label>
+            <Label className="text-foreground">Gênero (opcional)</Label>
             <Select value={formData.gender} onValueChange={(value) => handleChange("gender", value)}>
               <SelectTrigger className="h-12 bg-input border-border">
                 <SelectValue placeholder="Selecione" />
@@ -217,7 +217,7 @@ const EditProfile = () => {
           {/* Data de Nascimento */}
           <div className="space-y-2">
             <Label htmlFor="birthDate" className="text-foreground">
-              Nascimento*
+              Nascimento
             </Label>
             <div className="relative">
               <Input
@@ -234,7 +234,7 @@ const EditProfile = () => {
 
           {/* País */}
           <div className="space-y-2">
-            <Label className="text-foreground">País</Label>
+            <Label className="text-foreground">País (opcional)</Label>
             <Select value={formData.country} onValueChange={(value) => handleChange("country", value)}>
               <SelectTrigger className="h-12 bg-input border-border">
                 <SelectValue />
@@ -251,7 +251,7 @@ const EditProfile = () => {
 
           {/* Idiomas */}
           <div className="space-y-2">
-            <Label className="text-foreground">Idiomas</Label>
+            <Label className="text-foreground">Idiomas (opcional)</Label>
             <Select onValueChange={toggleLanguage}>
               <SelectTrigger className="h-12 bg-input border-border">
                 <SelectValue placeholder="Adicionar idioma" />
@@ -294,7 +294,7 @@ const EditProfile = () => {
 
           {/* Objetivo */}
           <div className="space-y-2">
-            <Label className="text-foreground">Objetivo</Label>
+            <Label className="text-foreground">Objetivo (opcional)</Label>
             <Select value={formData.objective} onValueChange={(value) => handleChange("objective", value)}>
               <SelectTrigger className="h-12 bg-input border-border">
                 <SelectValue placeholder="Selecione seu objetivo" />
@@ -311,7 +311,7 @@ const EditProfile = () => {
 
           {/* Experiência */}
           <div className="space-y-2">
-            <Label className="text-foreground">Experiência</Label>
+            <Label className="text-foreground">Experiência (opcional)</Label>
             <Select value={formData.experience} onValueChange={(value) => handleChange("experience", value)}>
               <SelectTrigger className="h-12 bg-input border-border">
                 <SelectValue placeholder="Selecione sua experiência" />
@@ -328,7 +328,7 @@ const EditProfile = () => {
 
           {/* Frequência */}
           <div className="space-y-2">
-            <Label className="text-foreground">Frequência</Label>
+            <Label className="text-foreground">Frequência (opcional)</Label>
             <Select value={formData.frequency} onValueChange={(value) => handleChange("frequency", value)}>
               <SelectTrigger className="h-12 bg-input border-border">
                 <SelectValue placeholder="Selecione a frequência" />
@@ -345,7 +345,7 @@ const EditProfile = () => {
 
           {/* Locais de treino */}
           <div className="space-y-2">
-            <Label className="text-foreground">Locais de treino</Label>
+            <Label className="text-foreground">Locais de treino (opcional)</Label>
             <div className="flex items-center gap-2 h-12 bg-input border border-border rounded-md px-3">
               <span className="text-muted-foreground flex-1 text-sm">
                 {formData.trainingLocations.length > 0

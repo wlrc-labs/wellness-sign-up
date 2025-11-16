@@ -74,7 +74,7 @@ const CompleteProfile = () => {
         {/* Nome */}
         <div className="space-y-2">
           <Label htmlFor="name" className="text-foreground">
-            Seu Nome*
+            Seu Nome
           </Label>
           <div className="relative">
             <User className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
@@ -92,7 +92,7 @@ const CompleteProfile = () => {
         {/* Data de Nascimento */}
         <div className="space-y-2">
           <Label htmlFor="birthDate" className="text-foreground">
-            Data de Nascimento*
+            Data de Nascimento
           </Label>
           <div className="relative">
             <Calendar className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
@@ -113,7 +113,7 @@ const CompleteProfile = () => {
         {/* Telefone */}
         <div className="space-y-2">
           <Label htmlFor="phone" className="text-foreground">
-            Telefone*
+            Telefone
           </Label>
           <div className="flex gap-2">
             <div className="relative w-24">
@@ -143,7 +143,7 @@ const CompleteProfile = () => {
         {userType === "profissional" && (
           <div className="space-y-2">
             <Label htmlFor="documentNumber" className="text-foreground">
-              Documento de identificação*
+              Documento de identificação
             </Label>
             <div className="flex gap-2">
               <Select value={formData.documentType} onValueChange={(value) => setFormData({ ...formData, documentType: value })}>
@@ -173,7 +173,7 @@ const CompleteProfile = () => {
         {userType === "profissional" && (
           <div className="space-y-2">
             <Label htmlFor="credentialNumber" className="text-foreground">
-              Credencial
+              Credencial (opcional)
             </Label>
             <div className="flex gap-2">
               <Select value={formData.credential} onValueChange={(value) => setFormData({ ...formData, credential: value })}>
