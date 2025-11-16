@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { Upload, Plus, Calendar, Edit2 } from "lucide-react";
+import { Upload, Plus, Calendar, X } from "lucide-react";
 
 const EditProfile = () => {
   const navigate = useNavigate();
@@ -23,15 +23,34 @@ const EditProfile = () => {
     gender: "",
     birthDate: "1998-11-15",
     country: "Brasil",
+    languages: ["Português"],
     profilePhoto: null as File | null,
     
     // Informações de Treino
-    languages: ["Português"],
     objective: "",
     experience: "",
     frequency: "",
     trainingLocations: [] as string[],
   });
+
+  const genderOptions = ["Masculino", "Feminino"];
+  const countryOptions = [
+    "Brasil", "Estados Unidos", "Espanha", "Alemanha", "Reino Unido", 
+    "Portugal", "Afeganistão", "Albânia", "Argélia", "Andorra", "Angola", 
+    "Antígua e Barbuda", "Argentina"
+  ];
+  const languageOptions = [
+    "Inglês", "Português", "Espanhol", "Alemão", "Francês", "Italiano",
+    "Japonês", "Africâner", "Albanês", "Árabe", "Azerbaijano", "Bengali"
+  ];
+  const objectiveOptions = [
+    "Hipertrofia", "Emagrecimento", "Manter condicionamento", "Ganho de Força"
+  ];
+  const experienceOptions = ["Iniciante", "Intermediário", "Avançado"];
+  const frequencyOptions = [
+    "1x / semana", "2x / semana", "3x / semana", "4x / semana",
+    "5x / semana", "6x / semana", "7x / semana"
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,19 +69,27 @@ const EditProfile = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const toggleLanguage = (language: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      languages: prev.languages.includes(language)
+        ? prev.languages.filter((l) => l !== language)
+        : [...prev.languages, language],
+    }));
+  };
+
+  const removeLanguage = (language: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      languages: prev.languages.filter((l) => l !== language),
+    }));
+  };
+
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setFormData((prev) => ({ ...prev, profilePhoto: file }));
     }
-  };
-
-  const addLanguage = () => {
-    // Will implement language selection later
-    toast({
-      title: "Em desenvolvimento",
-      description: "Funcionalidade de adicionar idioma será implementada em breve.",
-    });
   };
 
   const addTrainingLocation = () => {
@@ -130,10 +157,19 @@ const EditProfile = () => {
           <div className="space-y-2">
             <Label className="text-foreground">Telefone*</Label>
             <div className="flex gap-2">
-              <div className="flex items-center gap-2 w-28 bg-input border border-border rounded-md px-3">
-                <span className="text-foreground">{formData.phoneCountryCode}</span>
-                <Edit2 className="w-4 h-4 text-muted-foreground" />
-              </div>
+              <Select value={formData.phoneCountryCode} onValueChange={(value) => handleChange("phoneCountryCode", value)}>
+                <SelectTrigger className="w-28 h-12 bg-input border-border">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="+55">+55</SelectItem>
+                  <SelectItem value="+1">+1</SelectItem>
+                  <SelectItem value="+34">+34</SelectItem>
+                  <SelectItem value="+49">+49</SelectItem>
+                  <SelectItem value="+44">+44</SelectItem>
+                  <SelectItem value="+351">+351</SelectItem>
+                </SelectContent>
+              </Select>
               <Input
                 type="tel"
                 value={formData.phone}
@@ -164,12 +200,18 @@ const EditProfile = () => {
           {/* Gênero */}
           <div className="space-y-2">
             <Label className="text-foreground">Gênero</Label>
-            <div className="flex items-center gap-2 h-12 bg-input border border-border rounded-md px-3">
-              <span className="text-foreground flex-1">
-                {formData.gender || "Selecione"}
-              </span>
-              <Edit2 className="w-4 h-4 text-muted-foreground" />
-            </div>
+            <Select value={formData.gender} onValueChange={(value) => handleChange("gender", value)}>
+              <SelectTrigger className="h-12 bg-input border-border">
+                <SelectValue placeholder="Selecione" />
+              </SelectTrigger>
+              <SelectContent>
+                {genderOptions.map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Data de Nascimento */}
@@ -193,10 +235,54 @@ const EditProfile = () => {
           {/* País */}
           <div className="space-y-2">
             <Label className="text-foreground">País</Label>
-            <div className="flex items-center gap-2 h-12 bg-input border border-border rounded-md px-3">
-              <span className="text-foreground flex-1">{formData.country}</span>
-              <Edit2 className="w-4 h-4 text-muted-foreground" />
-            </div>
+            <Select value={formData.country} onValueChange={(value) => handleChange("country", value)}>
+              <SelectTrigger className="h-12 bg-input border-border">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {countryOptions.map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Idiomas */}
+          <div className="space-y-2">
+            <Label className="text-foreground">Idiomas</Label>
+            <Select onValueChange={toggleLanguage}>
+              <SelectTrigger className="h-12 bg-input border-border">
+                <SelectValue placeholder="Adicionar idioma" />
+              </SelectTrigger>
+              <SelectContent>
+                {languageOptions.map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {formData.languages.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-2">
+                {formData.languages.map((language) => (
+                  <div
+                    key={language}
+                    className="flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm"
+                  >
+                    <span>{language}</span>
+                    <button
+                      type="button"
+                      onClick={() => removeLanguage(language)}
+                      className="hover:bg-primary/20 rounded-full p-0.5"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
@@ -206,75 +292,55 @@ const EditProfile = () => {
             Informações de Treino
           </h2>
 
-          {/* Idiomas */}
-          <div className="space-y-2">
-            <Label className="text-foreground">Idiomas</Label>
-            <div className="flex items-center gap-2 h-12 bg-input border border-border rounded-md px-3">
-              <span className="text-foreground flex-1">
-                {formData.languages.join(", ")}
-              </span>
-              <button
-                type="button"
-                onClick={addLanguage}
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <Plus className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-
           {/* Objetivo */}
           <div className="space-y-2">
-            <Label htmlFor="objective" className="text-foreground">
-              Objetivo
-            </Label>
-            <div className="flex items-center gap-2 h-12 bg-input border border-border rounded-md px-3">
-              <Input
-                id="objective"
-                type="text"
-                value={formData.objective}
-                onChange={(e) => handleChange("objective", e.target.value)}
-                className="border-0 bg-transparent h-full p-0 focus-visible:ring-0"
-                placeholder="Ex: Hipertrofia, Emagrecimento..."
-              />
-              <Edit2 className="w-4 h-4 text-muted-foreground" />
-            </div>
+            <Label className="text-foreground">Objetivo</Label>
+            <Select value={formData.objective} onValueChange={(value) => handleChange("objective", value)}>
+              <SelectTrigger className="h-12 bg-input border-border">
+                <SelectValue placeholder="Selecione seu objetivo" />
+              </SelectTrigger>
+              <SelectContent>
+                {objectiveOptions.map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Experiência */}
           <div className="space-y-2">
-            <Label htmlFor="experience" className="text-foreground">
-              Experiência
-            </Label>
-            <div className="flex items-center gap-2 h-12 bg-input border border-border rounded-md px-3">
-              <Input
-                id="experience"
-                type="text"
-                value={formData.experience}
-                onChange={(e) => handleChange("experience", e.target.value)}
-                className="border-0 bg-transparent h-full p-0 focus-visible:ring-0"
-                placeholder="Ex: Iniciante, Intermediário..."
-              />
-              <Edit2 className="w-4 h-4 text-muted-foreground" />
-            </div>
+            <Label className="text-foreground">Experiência</Label>
+            <Select value={formData.experience} onValueChange={(value) => handleChange("experience", value)}>
+              <SelectTrigger className="h-12 bg-input border-border">
+                <SelectValue placeholder="Selecione sua experiência" />
+              </SelectTrigger>
+              <SelectContent>
+                {experienceOptions.map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Frequência */}
           <div className="space-y-2">
-            <Label htmlFor="frequency" className="text-foreground">
-              Frequência
-            </Label>
-            <div className="flex items-center gap-2 h-12 bg-input border border-border rounded-md px-3">
-              <Input
-                id="frequency"
-                type="text"
-                value={formData.frequency}
-                onChange={(e) => handleChange("frequency", e.target.value)}
-                className="border-0 bg-transparent h-full p-0 focus-visible:ring-0"
-                placeholder="Ex: 3x por semana..."
-              />
-              <Edit2 className="w-4 h-4 text-muted-foreground" />
-            </div>
+            <Label className="text-foreground">Frequência</Label>
+            <Select value={formData.frequency} onValueChange={(value) => handleChange("frequency", value)}>
+              <SelectTrigger className="h-12 bg-input border-border">
+                <SelectValue placeholder="Selecione a frequência" />
+              </SelectTrigger>
+              <SelectContent>
+                {frequencyOptions.map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Locais de treino */}
