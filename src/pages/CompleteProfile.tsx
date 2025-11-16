@@ -65,7 +65,11 @@ const CompleteProfile = () => {
   }
 
   return (
-    <AuthLayout title="Criando nova conta" showBackButton>
+    <AuthLayout 
+      title="Criando nova conta" 
+      showBackButton
+      onBackClick={() => setUserType(null)}
+    >
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Nome */}
         <div className="space-y-2">

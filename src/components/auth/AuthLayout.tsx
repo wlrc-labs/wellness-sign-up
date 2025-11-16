@@ -4,18 +4,27 @@ import { useNavigate } from "react-router-dom";
 interface AuthLayoutProps {
   children: React.ReactNode;
   showBackButton?: boolean;
+  onBackClick?: () => void;
   title: string;
   subtitle?: string;
 }
 
-export const AuthLayout = ({ children, showBackButton = false, title, subtitle }: AuthLayoutProps) => {
+export const AuthLayout = ({ children, showBackButton = false, onBackClick, title, subtitle }: AuthLayoutProps) => {
   const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    if (onBackClick) {
+      onBackClick();
+    } else {
+      navigate(-1);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {showBackButton && (
         <button
-          onClick={() => navigate(-1)}
+          onClick={handleBackClick}
           className="absolute top-6 left-6 p-2 hover:bg-muted rounded-full transition-colors"
         >
           <ArrowLeft className="w-5 h-5 text-foreground" />
