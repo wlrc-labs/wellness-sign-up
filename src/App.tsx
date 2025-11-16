@@ -17,6 +17,7 @@ import CompleteProfile from "./pages/CompleteProfile";
 import Home from "./pages/Home";
 import EditProfile from "./pages/EditProfile";
 import NotFound from "./pages/NotFound";
+import MainLayout from "./components/MainLayout";
 
 const queryClient = new QueryClient();
 
@@ -38,8 +39,9 @@ const App = () => (
           <Route path="/reset-code-verification" element={<ResetCodeVerification />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/complete-profile" element={<CompleteProfile />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/edit-profile" element={<EditProfile />} />
+          <Route path="/home" element={<MainLayout><Home /></MainLayout>} />
+          <Route path="/edit-profile" element={<MainLayout><EditProfile /></MainLayout>} />
+          <Route path="/my-workouts" element={<MainLayout><div className="p-6 text-center text-muted-foreground">Página em desenvolvimento</div></MainLayout>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
