@@ -17,7 +17,7 @@ const PasswordPrompt = () => {
 
   const handleContinue = () => {
     if (password) {
-      navigate("/");
+      navigate("/home");
     }
   };
 
