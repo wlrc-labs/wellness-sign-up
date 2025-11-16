@@ -31,7 +31,7 @@ const CompleteProfile = () => {
       return;
     }
     // Navigate to main app after profile completion
-    navigate("/");
+    navigate("/home");
   };
 
   if (!userType) {
