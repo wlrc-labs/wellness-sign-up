@@ -26,7 +26,7 @@ const EditProfile = () => {
     languages: ["Português"],
     profilePhoto: null as File | null,
     
-    // Informações de Treino
+    // Informações de Ciclos de Treino
     objective: "",
     experience: "",
     frequency: "",
@@ -286,10 +286,10 @@ const EditProfile = () => {
           </div>
         </div>
 
-        {/* Informações de Treino */}
+        {/* Informações de Ciclos de Treino */}
         <div className="space-y-4">
           <h2 className="text-lg font-semibold text-foreground border-b border-border pb-2">
-            Informações de Treino
+            Informações de Ciclos de Treino
           </h2>
 
           {/* Objetivo */}
@@ -343,14 +343,14 @@ const EditProfile = () => {
             </Select>
           </div>
 
-          {/* Locais de treino */}
+          {/* Locais de ciclos de treino */}
           <div className="space-y-2">
-            <Label className="text-foreground">Locais de treino (opcional)</Label>
+            <Label className="text-foreground">Locais de ciclos de treino (opcional)</Label>
             <div className="flex items-center gap-2 h-12 bg-input border border-border rounded-md px-3">
               <span className="text-muted-foreground flex-1 text-sm">
                 {formData.trainingLocations.length > 0
                   ? formData.trainingLocations.join(", ")
-                  : "Adicione seus locais de treino"}
+                  : "Adicione seus locais de ciclos de treino"}
               </span>
               <button
                 type="button"
